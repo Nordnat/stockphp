@@ -10,10 +10,6 @@ class StockTest extends TestCase
     {
         $this->stock = new Stock();
     }
-    public function testDummy()
-    {
-    $this->assertTrue(true);
-    }
     public function testAdd()
     {
         $element = 'silnik';

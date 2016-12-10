@@ -3,10 +3,10 @@
 class Stock
 {
     protected $stock = [];
-    public function add($arr, $partName) {
-        array_push($arr, $partName);
+    public function add($partName) {
+        array_push($this->stock, $partName);
     }
-    public function take ($arr) {
-        return array_shift($arr);
+    public function take() {
+        return array_shift($this->stock);
     }
 }
