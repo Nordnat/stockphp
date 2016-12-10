@@ -1,0 +1,17 @@
+{
+    "name": "nordnat/stockphp",
+    "type": "library",
+    "require": {},
+    "scripts": {
+        "test": "phpunit"
+    },
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Stock\\": "src/Stock"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.6"
+    }
+}
