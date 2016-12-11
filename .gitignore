@@ -4,6 +4,7 @@
 
 # Files
 composer.phar
+*.cache
 
 # External Libraries
 /vendor/
