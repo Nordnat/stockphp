@@ -3,16 +3,22 @@
 class Stock
 {
     protected $stock = [];
-    public function add($partName) {
-        if (is_array($partName)) {
-            foreach ($partName as $part) {
-                array_push($this->stock, $part);
-            }
-        } else {
-            array_push($this->stock, $partName);
-        }
+
+    /**
+     * Add elements to stock
+     * @param $elements string|array Element or array of Elements
+     */
+    public function add($elements)
+    {
+        $this->stock = array_merge($this->stock, (array) $elements);
     }
-    public function take() {
+
+    /**
+     * Removes and Returns first element in stock
+     * @return mixed
+     */
+    public function take()
+    {
         return array_shift($this->stock);
     }
 }
