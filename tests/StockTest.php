@@ -34,6 +34,6 @@ class StockTest extends TestCase
         $property->setAccessible(true);
         $stock_array = $property->getValue($this->stock);
         $this->assertEquals(0,count($stock_array));
-        $this->assertEquals($taken_element, 'silnik');
+        $this->assertEquals($taken_element, $element);
     }
 }
