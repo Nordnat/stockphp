@@ -1,6 +1,9 @@
-<?php namespace Stock;
+<?php namespace Stock\Models;
 
-class Stock
+use Stock\Contracts\Addable;
+use Stock\Contracts\Takeable;
+
+abstract class Stock implements Addable, Takeable
 {
     protected $stock = [];
 
@@ -17,8 +20,5 @@ class Stock
      * Removes and Returns first element in stock
      * @return mixed
      */
-    public function take()
-    {
-        return array_shift($this->stock);
-    }
+    abstract public function take();
 }

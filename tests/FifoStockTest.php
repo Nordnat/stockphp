@@ -1,14 +1,14 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use Stock\Stock;
+use Stock\Models\FifoStock;
 
-class StockTest extends TestCase
+class FifoStockTest extends TestCase
 {
     public $stock;
 
     public function setUp()
     {
-        $this->stock = new Stock();
+        $this->stock = new FifoStock();
     }
 
     public function testAdd()

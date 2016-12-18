@@ -1,6 +1,9 @@
-<?php namespace Stock;
+<?php namespace Stock\Models;
 
-class LifoStock extends Stock
+use Stock\Contracts\Addable;
+use Stock\Contracts\Takeable;
+
+class LifoStock extends Stock implements Addable, Takeable
 {
     /**
      * Removes and Returns last element in stock
