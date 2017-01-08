@@ -13,7 +13,7 @@ class LifoStockTest extends TestCase
 
     public function testTake()
     {
-        $element = 'silnik';
+        $element = ['name' => 'brakes', 'price' => 199, 'producent' => 'acme'];
         $this->stock->add($element);
         $taken_element = $this->stock->take();
 
