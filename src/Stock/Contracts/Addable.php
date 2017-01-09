@@ -2,5 +2,7 @@
 
 interface Addable
 {
-    public function add($elements);
+    public function add(array $element = []);
+
+    public function add_many(array $elements = []);
 }

@@ -11,9 +11,18 @@ abstract class Stock implements Addable, Takeable
      * Add elements to stock
      * @param $elements string|array Element or array of Elements
      */
-    public function add($elements)
+    public function add(array $element = [])
     {
-        $this->stock = array_merge($this->stock, (array) $elements);
+        if (count($element) == 3) {
+            $this->stock[] = $element;
+        }
+    }
+
+    public function add_many(array $elements = [])
+    {
+        foreach ($elements as $element) {
+            $this->add($element);
+        }
     }
 
     /**
