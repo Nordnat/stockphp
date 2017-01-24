@@ -8,3 +8,4 @@ composer.phar
 
 # External Libraries
 /vendor/
+/index.php
