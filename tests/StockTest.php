@@ -73,4 +73,28 @@ class StockTest extends TestCase
         $this->assertEquals($stock_array[1], $element2);
         $this->assertEquals(2, count($stock_array));
     }
+
+    public function testSuccessfulElementValidation()
+    {
+        $element = ['name' => 'brakes', 'price' => 199, 'producent' => 'acme'];
+
+        $class = new ReflectionClass($this->stock);
+
+        $method = $class->getMethod('validate');
+        $method->setAccessible(true);
+        $is_valid = $method->invokeArgs($this->stock, [$element]);
+        $this->assertTrue($is_valid);
+    }
+
+    public function testFailureElementValidation()
+    {
+        $element = ['name' => 'brakes', 'producent' => 'acme'];
+
+        $class = new ReflectionClass($this->stock);
+
+        $method = $class->getMethod('validate');
+        $method->setAccessible(true);
+        $is_valid = $method->invokeArgs($this->stock, [$element]);
+        $this->assertFalse($is_valid);
+    }
 }
