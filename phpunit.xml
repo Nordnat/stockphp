@@ -4,7 +4,7 @@
          bootstrap="vendor/autoload.php"
          backupGlobals="false"
          stopOnError="true"
-         stopOnFailure="false"
+         stopOnFailure="true"
          stopOnIncomplete="true"
          stopOnSkipped="true"
          beStrictAboutCoversAnnotation="true"
