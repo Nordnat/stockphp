@@ -1,6 +1,7 @@
 <?php namespace Stock\Models;
 
 use Stock\Contracts\Addable;
+use Stock\Contracts\IGoods;
 use Stock\Contracts\Takeable;
 
 abstract class Stock implements Addable, Takeable
@@ -9,9 +10,9 @@ abstract class Stock implements Addable, Takeable
 
     /**
      * Add goods
-     * @param Goods $goods
+     * @param IGoods $goods
      */
-    public function add(Goods $goods)
+    public function add(IGoods $goods)
     {
         $this->stock[] = $goods;
     }

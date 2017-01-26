@@ -1,6 +1,8 @@
 <?php namespace Stock\Models;
 
-class Goods
+use Stock\Contracts\IGoods;
+
+class Goods implements IGoods
 {
     public $name;
     public $price;
