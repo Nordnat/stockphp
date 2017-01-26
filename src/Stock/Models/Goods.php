@@ -45,9 +45,9 @@ class Goods
         return $type === gettype($field);
     }
 
-    protected function check_required($field, $required)
+    protected function check_required($field, $required = false)
     {
-        return $required === isset($field);
+        return $required ? isset($field) : true;
     }
 
     protected function goodsValidation($data)
