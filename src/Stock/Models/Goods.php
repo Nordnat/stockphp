@@ -9,7 +9,7 @@ class Goods implements IGoods
     public $producer;
     public $quantity;
     public $serial_code;
-    protected $validation_rulez = [
+    protected $validation_rules = [
         'name' => [
             'type' => 'string',
             'required' => true
@@ -28,18 +28,26 @@ class Goods implements IGoods
         ]
     ];
 
-    public function __construct($data)
+    public function __construct($data = null)
     {
-        if (! $this->goodsValidation($data)) {
+        if ($data !== null && ! $this->goodsValidation($data)) {
             // throw new \Exception needs "\" to exit namespace
             throw new \Exception("Goods attributes ar not valid");
         }
 
+        if ($data !== null) {
+            $this->setAttributes($data);
+        }
+
+        $this->serial_code = $this->serialCodeGenerator($this->name);
+    }
+
+    protected function setAttributes($data)
+    {
         $this->name = $data['name'];
         $this->price = $data['price'];
         $this->producer = $data['producer'];
         $this->quantity = $data['quantity'];
-        $this->serial_code = $this->serialCodeGenerator($this->name);
     }
 
     protected function check_type($field, $type)
@@ -54,7 +62,7 @@ class Goods implements IGoods
 
     protected function goodsValidation($data)
     {
-        foreach ($this->validation_rulez as $field => $rules) {
+        foreach ($this->validation_rules as $field => $rules) {
             foreach ($rules as $key => $rule) {
                 // dynamically creates methods names based on goods attribute name
                 $method = 'check_' . $key;
@@ -69,9 +77,9 @@ class Goods implements IGoods
         return true;
     }
 
-    protected function serialCodeGenerator($name)
+    protected function serialCodeGenerator()
     {
-        $name_substring = substr($this->name, 0, 3);
+        $name_substring = ($this->name) ? substr($this->name, 0, 3) : 'std';
         $serial_code = $name_substring . round(microtime(true) * 1000);
 
         return $serial_code;
