@@ -52,7 +52,7 @@ class Goods implements IGoods
 
     protected function check_type($field, $type)
     {
-        return $type === gettype($field);
+        return gettype($field) === $type;
     }
 
     protected function check_required($field, $required = false)
@@ -66,7 +66,8 @@ class Goods implements IGoods
             foreach ($rules as $key => $rule) {
                 // dynamically creates methods names based on goods attribute name
                 $method = 'check_' . $key;
-                $is_valid = $this->{$method}($data[$field], $rule);
+                $d = array_key_exists($field, $data) ? $data[$field] : null;
+                $is_valid = $this->{$method}($d, $rule);
 
                 if ($is_valid === false) {
                     return false;
@@ -79,7 +80,7 @@ class Goods implements IGoods
 
     protected function serialCodeGenerator()
     {
-        $name_substring = ($this->name) ? substr($this->name, 0, 3) : 'std';
+        $name_substring = isset($this->name) ? substr($this->name, 0, 3) : 'std';
         $serial_code = $name_substring . round(microtime(true) * 1000);
 
         return $serial_code;

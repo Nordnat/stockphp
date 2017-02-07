@@ -11,10 +11,15 @@ class GoodsTest extends TestCase
         $this->goods_data = ['name' => 'brakes', 'price' => 199.00, 'producer' => 'acme', 'quantity' => 20];
     }
 
+    public function testValidationException()
+    {
+        $this->expectException(Exception::class);
+        $goods = new Goods(['dupa' => 'fake']);
+    }
 
     public function testCheckTypeMethod()
     {
-        $goods = new Goods($this->goods_data);
+        $goods = new Goods();
         
         $class = new ReflectionClass($goods);
         $method = $class->getMethod('check_type');
@@ -29,7 +34,7 @@ class GoodsTest extends TestCase
 
     public function testCheckRequiredMethod()
     {
-        $goods = new Goods($this->goods_data);
+        $goods = new Goods();
         
         $class = new ReflectionClass($goods);
         $method = $class->getMethod('check_required');
@@ -42,7 +47,7 @@ class GoodsTest extends TestCase
 
     public function testGoodsValidationMethod()
     {
-        $goods = new Goods($this->goods_data);
+        $goods = new Goods();
         
         $good_proper = ['name' => 'brakes', 'price' => 199.00, 'producer' => 'acme', 'quantity' => 20];
         $good_wrong_type = ['name' => 'brakes', 'price' => '199.00', 'producer' => 'acme', 'quantity' => 20];
