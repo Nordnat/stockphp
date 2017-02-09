@@ -1,6 +1,7 @@
 <?php namespace Stock\Models;
 
 use Stock\Contracts\Addable;
+use Stock\Contracts\IGoods;
 use Stock\Contracts\Takeable;
 
 abstract class Stock implements Addable, Takeable
@@ -8,20 +9,18 @@ abstract class Stock implements Addable, Takeable
     protected $stock = [];
 
     /**
-     * Add elements to stock
-     * @param $elements string|array Element or array of Elements
+     * Add goods
+     * @param IGoods $goods
      */
-    public function add(array $element = [])
+    public function add(IGoods $goods)
     {
-        if (count($element) == 3) {
-            $this->stock[] = $element;
-        }
+        $this->stock[] = $goods;
     }
 
-    public function add_many(array $elements = [])
+    public function add_many(array $goods = [])
     {
-        foreach ($elements as $element) {
-            $this->add($element);
+        foreach ($goods as $good) {
+            $this->add($good);
         }
     }
 

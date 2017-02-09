@@ -1,6 +1,7 @@
 <?php
 use PHPUnit\Framework\TestCase;
 use Stock\Models\FifoStock;
+use Stock\Models\Goods;
 
 class FifoStockTest extends TestCase
 {
@@ -14,9 +15,9 @@ class FifoStockTest extends TestCase
     public function testTake()
     {
         $element = [
-            ['name' => 'brakes', 'price' => 199, 'producent' => 'acme'],
-            ['name' => 'wheel', 'price' => 199, 'producent' => 'firestor'],
-            ['name' => 'mirror', 'price' => 199, 'producent' => 'mirrorland']
+            new Goods(['name' => 'brakes', 'price' => 199.00, 'producer' => 'acme', 'quantity' => 20]),
+            new Goods(['name' => 'wheel', 'price' => 199.77, 'producer' => 'firestor', 'quantity' => 20]),
+            new Goods(['name' => 'mirror', 'price' => 199.77, 'producer' => 'mirrorland', 'quantity' => 20]),
         ];
         $this->stock->add_many($element);
         $taken_element = $this->stock->take();

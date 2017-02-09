@@ -1,5 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
+use Stock\Models\Goods;
 use Stock\Models\Stock;
 
 class TestProxyStock extends Stock
@@ -26,51 +27,36 @@ class StockTest extends TestCase
 
     public function testAddSignleELement()
     {
-        $multielement = [
-            ['name' => 'brakes', 'price' => 199, 'producent' => 'acme'],
-            ['name' => 'wheel', 'price' => 199, 'producent' => 'firestor'],
-            ['name' => 'mirror', 'price' => 199, 'producent' => 'mirrorland']
-        ];
-        foreach ($multielement as $element) {
-            $this->stock->add($element);
-        }
+        $element = new Goods([
+            'name' => 'brakes', 'price' => 220.80, 'producer' => 'Brakers', 'quantity' => 30
+        ]);
+
+        $this->stock->add($element);
 
         $class = new ReflectionClass($this->stock);
 
         $property = $class->getProperty('stock');
         $property->setAccessible(true);
         $stock_array = $property->getValue($this->stock);
-        $this->assertEquals($multielement[0], $stock_array[0]);
-        $this->assertEquals(3, count($stock_array));
-    }
-
-    public function testAddSignleEmptyELement()
-    {
-        $emptyElement = [];
-        $this->stock->add($emptyElement);
-
-        $class = new ReflectionClass($this->stock);
-
-        $property = $class->getProperty('stock');
-        $property->setAccessible(true);
-        $stock_array = $property->getValue($this->stock);
-        $this->assertEquals(0, count($stock_array));
+        $this->assertEquals($element, $stock_array[0]);
     }
 
     public function testAddMultipleElements()
     {
-        $element1 = ['name' => 'brakes', 'price' => 199, 'producent' => 'acme'];
-        $element2 = ['name' => 'wheel', 'price' => 199, 'producent' => 'firestore'];
-        $multiElement = [$element1, $element2];
-        $this->stock->add_many($multiElement);
+        $element = [
+            new Goods(['name' => 'brakes', 'price' => 199.00, 'producer' => 'acme', 'quantity' => 20]),
+            new Goods(['name' => 'wheel', 'price' => 199.77, 'producer' => 'firestor', 'quantity' => 20]),
+            new Goods(['name' => 'mirror', 'price' => 199.77, 'producer' => 'mirrorland', 'quantity' => 20]),
+        ];
+        $this->stock->add_many($element);
 
         $class = new ReflectionClass($this->stock);
 
         $property = $class->getProperty('stock');
         $property->setAccessible(true);
         $stock_array = $property->getValue($this->stock);
-        $this->assertEquals($stock_array[0], $element1);
-        $this->assertEquals($stock_array[1], $element2);
-        $this->assertEquals(2, count($stock_array));
+        $this->assertEquals($stock_array[0], $element[0]);
+        $this->assertEquals($stock_array[1], $element[1]);
+        $this->assertEquals(3, count($stock_array));
     }
 }
