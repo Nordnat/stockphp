@@ -1,14 +1,12 @@
-﻿CREATE TABLE `stocks` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL UNIQUE,
-  `price` decimal(10,2) NOT NULL,
-  `producer` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `quantity` int(11) NOT NULL,
-  `serial` int(15) NOT NULL,
+﻿IF NOT EXISTS (CREATE TABLE `stocks` (
+  `id` int(11)E NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL UNIQUE,
   `type` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;)
+
+CREATE INDEX `stock` ON `stocks` (`name`)
 
 INSERT INTO stocks (name, price, producer, quantity, serial)
 VALUES
