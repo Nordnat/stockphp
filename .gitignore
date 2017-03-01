@@ -10,3 +10,4 @@ composer.phar
 /vendor/
 /index.php
 /*.log
+/tests/reports/
