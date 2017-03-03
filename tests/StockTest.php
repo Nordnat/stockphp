@@ -35,7 +35,7 @@ class StockTest extends TestCase
 
         $class = new ReflectionClass($this->stock);
 
-        $property = $class->getProperty('stock');
+        $property = $class->getProperty('goods');
         $property->setAccessible(true);
         $stock_array = $property->getValue($this->stock);
         $this->assertEquals($element, $stock_array[0]);
@@ -52,11 +52,11 @@ class StockTest extends TestCase
 
         $class = new ReflectionClass($this->stock);
 
-        $property = $class->getProperty('stock');
+        $property = $class->getProperty('goods');
         $property->setAccessible(true);
         $stock_array = $property->getValue($this->stock);
         $this->assertEquals($stock_array[0], $element[0]);
         $this->assertEquals($stock_array[1], $element[1]);
-        $this->assertEquals(3, count($stock_array));
+        $this->assertCount(3, $stock_array);
     }
 }
