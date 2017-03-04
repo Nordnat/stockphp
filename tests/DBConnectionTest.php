@@ -7,7 +7,7 @@ class DBConnectionTest extends TestCase
 {
     public function testRawQuery()
     {
-        $db = new DBConnection;
+        $db = new DBConnection();
 
         $this->assertEquals(3, $db->rawQuery('SELECT 1 + 2;')->fetchColumn());
         $this->assertInternalType('array', $db->rawQuery('SELECT 1;')->fetch());
@@ -16,7 +16,7 @@ class DBConnectionTest extends TestCase
 
     public function testPrepareStatementQuery()
     {
-        $db = new DBConnection;
+        $db = new DBConnection();
 
         $statement = 'SELECT :a + :b;';
         $args = [':a' => 1, ':b' => 2];

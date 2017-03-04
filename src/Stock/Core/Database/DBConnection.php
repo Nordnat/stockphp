@@ -37,8 +37,8 @@ class DBConnection
     {
         if (! $this->handler) {
             $this->handler = new \PDO($this->buildConnectionString(),
-                                     $this->db_config->username,
-                                     $this->db_config->password);
+                                      $this->db_config->username,
+                                      $this->db_config->password);
         }
 
         return $this;
