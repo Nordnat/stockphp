@@ -101,7 +101,7 @@ class Config implements Configurable
      */
     protected function splitToArray($config)
     {
-        return explode('.', $config);
+        return $config ? explode('.', $config) : [];
     }
 
     /**

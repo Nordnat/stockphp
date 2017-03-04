@@ -18,11 +18,12 @@ class DBConfig extends Config implements Configurable
      * $db_user = \Stock\Core\DBConfig::get('username');
      * </code>
      */
-    public static function get($config)
+    public static function get($config = null)
     {
         $instance = static::getInstance();
         $config_keys = $instance->splitToArray($config);
 
+        $config = $config ?: 'database';
         if (! array_key_exists($config, static::$cache)) {
             $configs = static::getInstance()->requireConfigFile('database');
             $configs = $configs['connections'][$configs['default']];
