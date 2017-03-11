@@ -24,10 +24,10 @@ class LifoStockTest extends TestCase
 
         $class = new ReflectionClass($this->stock);
 
-        $property = $class->getProperty('stock');
+        $property = $class->getProperty('goods');
         $property->setAccessible(true);
         $stock_array = $property->getValue($this->stock);
-        $this->assertEquals(2, count($stock_array));
+        $this->assertCount(2, $stock_array);
         $this->assertEquals($taken_element, $element[2]);
     }
 }
