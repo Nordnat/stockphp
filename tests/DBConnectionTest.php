@@ -1,6 +1,6 @@
 <?php
 
-use Core\DBConnection;
+use Stock\Core\Database\DBConnection;
 use PHPUnit\Framework\TestCase;
 
 class DBConnectionTest extends TestCase
