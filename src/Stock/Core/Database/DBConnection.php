@@ -91,6 +91,7 @@ class DBConnection
     {
         $this->statement = $this->handler->prepare($statement, $driver_options);
         $this->statement->execute($args);
+
         return $this;
     }
 
@@ -107,6 +108,7 @@ class DBConnection
 
         return $str;
     }
+
     public function getLastId()
     {
         return $this->handler->lastInsertId();

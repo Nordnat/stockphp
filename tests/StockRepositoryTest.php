@@ -11,9 +11,10 @@ class StockRepositoryTest extends \PHPUnit\Framework\TestCase
     public function testSavingStock()
     {
         $db = new DBConnection();
-        $stock = new FifoStock;
+        $randomNumber = rand(1, 999999999);
+        $stock = new FifoStock();
         $stock->type = 'FIFO';
-        $stock->name = 'First fifo stock for testing2';
+        $stock->name = 'First fifo stock for testing' . $randomNumber . '';
 
         $repository = new StockRepository($db);
         $stock->id = $repository->save($stock);

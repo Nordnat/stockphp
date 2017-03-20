@@ -6,7 +6,6 @@ use Stock\Core\Database\DBConnection;
 // Zadanie tej klasy jest umieć stworzyć odpowiednie query statement i przekazać je do DBConnection
 class StockRepository
 {
-
     public function __construct(DBConnection $db)
     {
         $this->db = $db;
