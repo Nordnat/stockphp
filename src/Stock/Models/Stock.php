@@ -16,6 +16,7 @@ abstract class Stock implements Addable, Takeable
     public $type;
     public $goods = [];
     protected $repository;
+    public $id;
 
     public function __construct()
     {
@@ -23,6 +24,9 @@ abstract class Stock implements Addable, Takeable
         $this->repository = new StockRepository($db);
     }
 
+    /**
+     * Saves element to database
+     */
     public function save()
     {
         $this->id = $this->repository->save($this);

@@ -3,7 +3,9 @@ namespace Stock\Models;
 
 use Stock\Core\Database\DBConnection;
 
-// Zadanie tej klasy jest umieć stworzyć odpowiednie query statement i przekazać je do DBConnection
+/**
+ * This class makes proper query statement and pass DBConnection
+ */
 class StockRepository
 {
     public function __construct(DBConnection $db)
@@ -11,11 +13,16 @@ class StockRepository
         $this->db = $db;
     }
 
+    /**
+     * @param Stock $stock
+     * @return string
+     */
     public function save(Stock $stock)
     {
-        $statement = "INSERT INTO stocks (`name`, `type`) VALUES (:name, :type)";
+        $statement = 'INSERT INTO stocks (`name`, `type`) VALUES (:name, :type)';
         $args = [':name' => $stock->name, ':type' => $stock->type];
-        $this->db->connect()->query($statement, $args); // powinno zwrócić ID dodanego elementu, a jak nie to trzeba to dopisać
+        $this->db->connect()->query($statement, $args);
+
         return $this->db->getLastId();
     }
 }

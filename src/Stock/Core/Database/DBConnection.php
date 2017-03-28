@@ -11,7 +11,6 @@ class DBConnection
      */
     protected $db_config;
 
-    public $id;
 
     /**
      * @var \PDO $handler;
@@ -109,6 +108,9 @@ class DBConnection
         return $str;
     }
 
+    /**
+     * @return string
+     */
     public function getLastId()
     {
         return $this->handler->lastInsertId();
