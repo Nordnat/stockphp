@@ -3,6 +3,7 @@
 use Stock\Contracts\Addable;
 use Stock\Contracts\IGoods;
 use Stock\Contracts\Takeable;
+use Stock\Core\Database\DBConnection;
 
 abstract class Stock implements Addable, Takeable
 {
@@ -14,6 +15,22 @@ abstract class Stock implements Addable, Takeable
     public $created_at;
     public $type;
     public $goods = [];
+    protected $repository;
+    public $id;
+
+    public function __construct()
+    {
+        $db = new DBConnection();
+        $this->repository = new StockRepository($db);
+    }
+
+    /**
+     * Saves element to database
+     */
+    public function save()
+    {
+        $this->id = $this->repository->save($this);
+    }
 
     /**
      * Adds goods to stock

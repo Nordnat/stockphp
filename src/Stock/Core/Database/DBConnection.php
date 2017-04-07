@@ -1,6 +1,6 @@
 <?php
 
-namespace Core;
+namespace Stock\Core\Database;
 
 use Stock\Core\Config\DBConfig;
 
@@ -10,6 +10,7 @@ class DBConnection
      * @var mixed $db_config
      */
     protected $db_config;
+
 
     /**
      * @var \PDO $handler;
@@ -105,5 +106,13 @@ class DBConnection
         $str .= ';charset=' . $this->db_config->charset;
 
         return $str;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastId()
+    {
+        return $this->handler->lastInsertId();
     }
 }
